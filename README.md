@@ -3,7 +3,7 @@
 
 # To use this,
 # Follow these steps
-> 1 git clone https://github.com/adi3120/CodeWatch.git \
-> 2 cd CodeWatch \
-> 3 python install -r requirements.txt \
-> 4 python demo.py \
+> Step 1. git clone https://github.com/adi3120/CodeWatch.git \
+> Step 2. cd CodeWatch \
+> Step 3. python install -r requirements.txt \
+> Step 4. python demo.py \
