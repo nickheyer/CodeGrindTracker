@@ -5,7 +5,7 @@ from csv import writer
 from tkinter.messagebox import askyesno, askquestion
 
 ws = Tk()
-ws.geometry('205x225+500+150')
+ws.geometry('245x225+500+150')
 ws.title('CodeWatch')
 ws.config(bg='#299617')
 ws.resizable(0,0)
@@ -72,6 +72,16 @@ def SaveTimer(lbl):
 			writer_object.writerow(row)
 	running = False
 
+def ResetCSV():
+	answer = askyesno(title='Confirmation',message='Do you want to RESET the CSV file')
+	if answer:
+		row=["Solve Time(s)","Solve Time(m)"]
+		with open("problem_time.csv",'w+') as f:
+			writer_object=writer(f)
+			writer_object.writerow(row)
+			f.close()		
+	running = False
+
 
 
 lbl = Label(
@@ -89,8 +99,8 @@ label_msg = Label(
     font="Verdana 10 bold"
     )
 
-lbl.place(x=80, y=50)
-label_msg.place(x=70, y=90)
+lbl.place(x=100, y=50)
+label_msg.place(x=90, y=90)
 
 start_btn=Button(
     ws, 
@@ -125,9 +135,18 @@ save_btn = Button(
     font="Verdana 10 bold",
     command=lambda:SaveTimer(lbl)
     )
+RESET_CSV_btn = Button(
+    ws, 
+    text='Reset CSV', 
+    width=10, 
+    state='normal', 
+    font="Verdana 10 bold",
+    command=lambda:ResetCSV()
+    )
 
 start_btn.place(x=15, y=155)
-stop_btn.place(x=135, y=155)
+stop_btn.place(x=75, y=155)
+RESET_CSV_btn.place(x=135, y=155)
 
 
 
