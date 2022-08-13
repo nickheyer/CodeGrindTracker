@@ -3,7 +3,7 @@ from PIL import ImageTk, Image
 import pandas as pd
 from csv import writer
 from tkinter.messagebox import askyesno, askquestion
-
+import math 
 ws = Tk()
 ws.geometry('245x225+500+150')
 ws.title('CodeWatch')
@@ -62,15 +62,16 @@ def ResetTimer(lbl):
         lbl['text']=''
 
 def SaveTimer(lbl):
-	answer = askyesno(title='Confirmation',message='Do you want to save this time')
-	if answer:
-		secs=counter
-		mins=secs/60
-		row=[secs,mins]
-		with open("problem_time.csv",'a') as f:
-			writer_object = writer(f)
-			writer_object.writerow(row)
-	running = False
+    answer = askyesno(title='Confirmation',message='Do you want to save this time')
+    if answer:
+        secs=counter
+        mins=secs/60
+        mins='%.2f' % mins
+        row=[secs,mins]
+        with open("problem_time.csv",'a') as f:
+            writer_object = writer(f)
+            writer_object.writerow(row)
+    running = False
 
 def ResetCSV():
 	answer = askyesno(title='Confirmation',message='Do you want to RESET the CSV file')
