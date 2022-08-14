@@ -2,8 +2,13 @@ from tkinter import *
 from PIL import ImageTk, Image
 import pandas as pd
 from csv import writer
+from tkinter import messagebox
+from tkinter.simpledialog import askstring
 from tkinter.messagebox import askyesno, askquestion
 import math 
+from datetime import date
+from datetime import datetime
+
 ws = Tk()
 ws.geometry('245x225+500+150')
 ws.title('CodeWatch')
@@ -31,13 +36,30 @@ def counter_label(lbl):
 	count()     
 
 def StartTimer(lbl):
-    global running
-    running=True
-    counter_label(lbl)
-    start_btn['state']='disabled'
-    stop_btn['state']='normal'
-    reset_btn['state']='normal'
-    save_btn['state']='normal'
+	global prob_link,attempted
+	prob_link=""
+	while prob_link=="":
+		prob_link=askstring('Problem Link', 'Enter Problem Link')
+		if(prob_link==""):
+			messagebox.showinfo(title="Error", message="Please input link")
+		else:
+			attempted = askyesno(title='Attempted?',message='Have You attempted this before?')
+				
+
+
+	global date,time
+	date=date.today()
+	time=datetime.now()
+	time = time.strftime("%H:%M:%S")
+
+	global running
+	running=True
+	counter_label(lbl)
+	start_btn['state']='disabled'
+	stop_btn['state']='normal'
+	reset_btn['state']='normal'
+	save_btn['state']='normal'
+
 
 def StopTimer():
 	global running
@@ -62,21 +84,22 @@ def ResetTimer(lbl):
         lbl['text']=''
 
 def SaveTimer(lbl):
-    answer = askyesno(title='Confirmation',message='Do you want to save this time')
-    if answer:
-        secs=counter
-        mins=secs/60
-        mins='%.2f' % mins
-        row=[secs,mins]
-        with open("problem_time.csv",'a') as f:
-            writer_object = writer(f)
-            writer_object.writerow(row)
-    running = False
+	answer = askyesno(title='Confirmation',message='Do you want to save this data')
+	if answer:
+		solved = askyesno(title='Confirmation',message='Were you able to solve this problem?')
+		secs=counter
+		mins=secs/60
+		mins='%.2f' % mins
+		row=[prob_link,date,time,secs,mins,attempted,solved]
+		with open("problem_time.csv",'a') as f:
+			writer_object = writer(f)
+			writer_object.writerow(row)
+	running = False
 
 def ResetCSV():
 	answer = askyesno(title='Confirmation',message='Do you want to RESET the CSV file')
 	if answer:
-		row=["Solve Time(s)","Solve Time(m)"]
+		row=["Problem Link","Date","Time","Time Taken(s)","Time Taken(m)","Attempted before","Solved"]
 		with open("problem_time.csv",'w+') as f:
 			writer_object=writer(f)
 			writer_object.writerow(row)
