@@ -6,9 +6,9 @@
 > ***
 > Step 2 > cd CodeWatch 
 > ***
-> Step 3 > python install -r requirements.txt 
+> Step 3 > pip install -r requirements.txt 
 > ***
-> Step 4 > python demo.py 
+> Step 4 > python app.py 
 > ***
 
 ## ScreenShots
