@@ -2,7 +2,7 @@
 
 # To use this,
 # Follow these steps
-> Step 1 > git clone https://github.com/adi3120/CodeWatch.git 
+> Step 1 > git clone https://github.com/nickheyer/CodeGrindTracker.git 
 > ***
 > Step 2 > cd CodeWatch 
 > ***
