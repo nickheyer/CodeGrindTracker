@@ -4,7 +4,7 @@
 # Follow these steps
 > Step 1 > git clone https://github.com/nickheyer/CodeGrindTracker
 > ***
-> Step 2 > cd CodeWatch 
+> Step 2 > cd CodeGrindTracker
 > ***
 > Step 3 > pip install -r requirements.txt 
 > ***
