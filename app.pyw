@@ -1,9 +1,27 @@
+import os
 from tkinter import *
-from csv import writer
+from csv import writer, QUOTE_MINIMAL
 from tkinter import messagebox
 from tkinter.simpledialog import askstring
 from tkinter.messagebox import askyesno
 from datetime import date, datetime
+
+#Initialization
+def get_root_dir():
+	return os.path.dirname(__file__)
+
+def generate_csv():	
+	with open("problem_time.csv",'w+') as f:
+		writer_object=writer(f)
+		row=["Problem Link","Date","Time","Time Taken(s)","Time Taken(m)","Attempted before","Solved"]
+		writer_object.writerow(row)
+		f.close()	
+	return
+
+if not os.path.exists(os.path.join(get_root_dir(), "problem_time.csv")):
+	generate_csv()
+
+
 
 ws = Tk()
 ws.geometry('245x225+500+150')
@@ -95,11 +113,7 @@ def SaveTimer(lbl):
 def ResetCSV():
 	answer = askyesno(title='Confirmation',message='Do you want to RESET the CSV file')
 	if answer:
-		row=["Problem Link","Date","Time","Time Taken(s)","Time Taken(m)","Attempted before","Solved"]
-		with open("problem_time.csv",'w+') as f:
-			writer_object=writer(f)
-			writer_object.writerow(row)
-			f.close()		
+		generate_csv()
 	running = False
 
 
