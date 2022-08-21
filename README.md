@@ -2,6 +2,9 @@
 
 # To use this,
 # Follow these steps
+
+> Step 0 > cd where/you/want/to/download/this/repo
+> ***
 > Step 1 > git clone https://github.com/nickheyer/CodeGrindTracker
 > ***
 > Step 2 > cd CodeGrindTracker
